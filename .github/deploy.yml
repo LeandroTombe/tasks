@@ -11,8 +11,6 @@ name: Maven Build and Test
 on:
   push:
     branches: [ "BDA" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
