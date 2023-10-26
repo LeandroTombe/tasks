@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface TaskService {
 
-    Task createTask(String name, String description, Boolean active, Boolean complete);
+    Task createTask(Task task);
     public Task findByName(String name);
 
     List<Task> AllTaskActive();

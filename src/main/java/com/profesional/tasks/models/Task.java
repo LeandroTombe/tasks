@@ -1,7 +1,10 @@
 package com.profesional.tasks.models;
 
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -13,8 +16,8 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long taskId;
 
-
     @Column(name = "name")
+    @NotNull(message = "El nombre de la tarea no puede estar en blanco")
     private String name;
 
     @Column(name = "description")
