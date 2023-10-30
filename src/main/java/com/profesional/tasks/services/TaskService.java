@@ -5,12 +5,13 @@ import com.profesional.tasks.models.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface TaskService {
 
     Task createTask(Task task);
-    public Task findByName(String name);
+    public Optional<Task> findByName(String name);
 
     List<Task> AllTaskActive();
 

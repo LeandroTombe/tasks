@@ -1,5 +1,6 @@
 package com.profesional.tasks.services.imp;
 
+import com.profesional.tasks.Exceptions.UserNotFoundException;
 import com.profesional.tasks.models.Task;
 import com.profesional.tasks.repositories.TaskRepository;
 import com.profesional.tasks.services.TaskService;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,12 +25,14 @@ public class TaskServiceImp implements TaskService {
 
     @Override
     public Task createTask(Task task) {
+        task.setDateCreated(new Date());
+        task.setDateUpdated(new Date());
         return taskRepository.save(task);
     }
 
     @Override
-    public Task findByName(String name) {
-        return null;
+    public Optional<Task> findByName(String taskName) {
+        return taskRepository.findByName(taskName);
     }
 
     @Override

@@ -45,8 +45,6 @@ public class Task {
         this.description = description;
         this.active = active;
         this.complete = complete;
-        this.dateCreated = new Date();
-        this.dateUpdated = new Date();
     }
 
     public Task( String name, String description, Boolean active, Boolean complete, Date dateUpdated) {
@@ -100,5 +98,13 @@ public class Task {
 
     public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }

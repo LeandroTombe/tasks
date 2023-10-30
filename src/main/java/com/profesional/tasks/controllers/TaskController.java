@@ -1,6 +1,7 @@
 package com.profesional.tasks.controllers;
 
 
+import com.profesional.tasks.Exceptions.UserNotFoundException;
 import com.profesional.tasks.models.Task;
 import com.profesional.tasks.services.TaskService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -38,5 +40,16 @@ public class TaskController {
         List<Task> AllTaskActive= taskService.AllTaskActive();
         logger.info("Obteniendo las tareas activas desde el controlador");
         return ResponseEntity.status(HttpStatus.OK).body(AllTaskActive);
+    }
+
+    @GetMapping("/{taskName}")
+    public ResponseEntity<?> getTaskByName(@PathVariable String taskName){
+        Optional<Task> taskOptional = taskService.findByName(taskName);
+        if (taskOptional.isPresent()) {
+            Task task = taskOptional.get();
+            return ResponseEntity.ok(task); // Usuario encontrado, respuesta exitosa
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("tarea: " + taskName + " no encontrado"); // Usuario no encontrado, código de estado 404 (Not Found)// Usuario no encontrado, respuesta 404
+        }
     }
 }
